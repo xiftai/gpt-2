@@ -10,9 +10,9 @@ ENV NVIDIA_VISIBLE_DEVICES=all \
     NVIDIA_REQUIRE_CUDA="cuda>=8.0" \
     LANG=C.UTF-8
 
-RUN apt-get update && mkdir /gpt-2
-ADD requirements.txt /gpt-2/requirements.txt
-RUN pip3 install -r /gpt-2/requirements.txt
+RUN apt-get update && \
+    mkdir /gpt-2 && \
+    pip3 install fire==0.1.3 regex==2017.4.5
 
 WORKDIR /gpt-2
 ADD . /gpt-2

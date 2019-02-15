@@ -1,0 +1,11 @@
+FROM tensorflow/tensorflow:1.12.0-py3
+
+ENV LANG=C.UTF-8
+RUN apt-get update && mkdir /gpt-2
+ADD requirements.txt /gpt-2/requirements.txt
+RUN pip3 install -r /gpt-2/requirements.txt
+
+WORKDIR /gpt-2
+ADD . /gpt-2
+
+CMD ["sleep", "infinity"]
