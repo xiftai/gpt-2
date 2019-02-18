@@ -6,6 +6,10 @@ import os
 import numpy as np
 import tensorflow as tf
 
+<<<<<<< HEAD
+=======
+#from src 
+>>>>>>> ilopezfr/master
 import model, sample, encoder
 
 def sample_model(
