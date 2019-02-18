@@ -43,6 +43,19 @@ To give the model custom prompts, you can use:
 python3 src/interactive_conditional_samples.py --top_k 40
 ```
 
+## Docker Usage
+
+To run gpt-2 from a docker container:
+
+```bash
+# build container and tag as gpt-2
+docker build --tag gpt-2 .
+# start container in the background and add volume to sync local changes
+docker run --runtime=nvidia -d -v $PWD:/gpt-2 --name gpt-2 gpt-2
+# open an interactive session
+docker exec -it gpt-2 bash
+```
+
 ## Future work
 
 We may release code for evaluating the models on various benchmarks.
