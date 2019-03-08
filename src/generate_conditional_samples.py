@@ -36,6 +36,16 @@ def interact_model(
     elif length > hparams.n_ctx:
         raise ValueError("Can't get samples longer than window size: %s" % hparams.n_ctx)
 
+    print("GPT-2 Parameters")
+    print("================")
+    print("Model Name : "+ str(model_name))
+    print("Seed = " + str(seed))
+    print("N Samples = " + str(nsamples))
+    print("Batch Size = " + str(batch_size))
+    print("Length = " + str(length))
+    print("Temperature = " + str(temperature))
+    print("Top K = " + str(top_k))
+
     with tf.Session(graph=tf.Graph()) as sess:
         context = tf.placeholder(tf.int32, [batch_size, None])
         output = sample.sample_sequence(
@@ -44,12 +54,13 @@ def interact_model(
             batch_size=batch_size,
             temperature=temperature, top_k=top_k
         )
-
+        
         saver = tf.train.Saver()
         ckpt = tf.train.latest_checkpoint(os.path.join('models', model_name))
         saver.restore(sess, ckpt)
 
         context_tokens = enc.encode(raw_text)
+        print("Context Tokens = " + str(context_tokens))
         generated = 0
         for _ in range(nsamples // batch_size):
             out = sess.run(output, feed_dict={
@@ -64,7 +75,9 @@ def interact_model(
 
 if __name__ == '__main__':
     raw_text = sys.argv.pop(1)
-    print("Text : " + str(raw_text))
+    print("Input Text")
+    print("==========")
+    print(str(raw_text))
     print("")
     fire.Fire(interact_model)
 
