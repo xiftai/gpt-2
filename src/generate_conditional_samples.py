@@ -9,6 +9,8 @@ import sys
 
 import model, sample, encoder
 
+from py_translator import Translator
+
 os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3' 
 
 def interact_model(
@@ -74,9 +76,10 @@ def interact_model(
         print("=" * 80)
 
 if __name__ == '__main__':
-    raw_text = sys.argv.pop(1)
-    print("Input Text")
-    print("==========")
+    input_text = sys.argv.pop(1)
+    raw_text = Translator().translate(text=input_text, dest='en').text
+    print("Input Text (Translated)")
+    print("=======================")
     print(str(raw_text))
     print("")
     fire.Fire(interact_model)
