@@ -63,6 +63,39 @@ docker run --runtime=nvidia -d -v $PWD:/gpt-2 --name gpt-2 gpt-2
 docker exec -it gpt-2 bash
 ```
 
+To build gpt-2 on a docker image (default : CPU) :
+```
+# build container and tag as xift.ai:gpt-2
+./setup_docker.sh
+```
+
+To check al the parameters:
+```
+./run_docker.sh 
+```
+
+```
+./run_docker.sh INPUT TEXT [PARAMETERS]
+
+Parameters :
+--seed (None) : a random value is generated unless specified. give a specific integer value if you want to reproduce same results in the future.
+--nsamples (1) : specify the number of samples you want to print
+--length (None) : number of tokens (words) to print on each sample.
+--batch_size (1) : how many inputs you want to process simultaneously. doesn't seem to affect the results.
+--temperature (1) : scales logits before sampling prior to softmax.
+--top_k (0) : truncates the set of logits considered to those with the highest values.
+
+Example : ./run_rocker.sh "In a shocking finding, scientist discovered a herd of unicorns living in a remote, previously unexplored valley, in the Andes Mountains." --nsamples=2 --top_k 40 --temperature .80
+```
+
+To run the container for condicional sample generation on some input text:
+
+```bash
+# run the container with some text
+./run_rocker.sh "In a shocking finding, scientist discovered a herd of unicorns living in a remote, previously unexplored valley, in the Andes Mountains." --nsamples=2 --top_k 40 --temperature .80
+```
+
+
 ## Future work
 
 We may release code for evaluating the models on various benchmarks.
