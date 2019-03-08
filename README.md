@@ -36,11 +36,18 @@ While we have not yet released GPT-2 itself, you can see some unconditional samp
 - `gpt2-samples.txt` (with default settings of temperature 1 and no truncation)
 - `gpt2-topk40-samples.txt` (with temperature 1 and top_k=40 truncation)
 
-## Conditional sample generation
+## Conditional sample generation (Interactive)
 
 To give the model custom prompts, you can use:
 ```
 python3 src/interactive_conditional_samples.py --top_k 40
+```
+
+## Conditional sample generation (Non-interactive)
+
+To give the model custom prompts without confirmation, you can use:
+```
+python3 src/generaete_conditional_samples.py "INPUT TEXT" --top_k 40
 ```
 
 ## Docker Usage
