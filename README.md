@@ -34,7 +34,7 @@ python3 src/generate_unconditional_samples.py --top_k 40 --temperature 0.7 | tee
 
 While we have not yet released GPT-2 itself, you can see some unconditional samples from it:
 - `gpt2-samples.txt` (with default settings of temperature 1 and no truncation)
-- `gpt2-topk40-samples.txt` (with temperature 1 and top_k=40 truncation)
+- `gpt2-topk40-samples.txt` (with temperature 1 and top_k 40 truncation)
 
 ## Conditional sample generation (Interactive)
 
@@ -69,13 +69,13 @@ To build gpt-2 on a docker image (default : CPU) :
 ./setup_docker.sh
 ```
 
-To check al the parameters:
+To check all the parameters:
 ```
 ./run_docker.sh 
 ```
 
 ```
-./run_docker.sh INPUT TEXT [PARAMETERS]
+./run_docker.sh "INPUT TEXT" [PARAMETERS]
 
 Parameters :
 --seed (None) : a random value is generated unless specified. give a specific integer value if you want to reproduce same results in the future.
@@ -85,14 +85,14 @@ Parameters :
 --temperature (1) : scales logits before sampling prior to softmax.
 --top_k (0) : truncates the set of logits considered to those with the highest values.
 
-Example : ./run_rocker.sh "In a shocking finding, scientist discovered a herd of unicorns living in a remote, previously unexplored valley, in the Andes Mountains." --nsamples=2 --top_k 40 --temperature .80
+Example : ./run_docker.sh "In a shocking finding, scientist discovered a herd of unicorns living in a remote, previously unexplored valley, in the Andes Mountains." --nsamples 2 --top_k 40 --temperature .80
 ```
 
 To run the container for condicional sample generation on some input text:
 
 ```bash
 # run the container with some text
-./run_rocker.sh "In a shocking finding, scientist discovered a herd of unicorns living in a remote, previously unexplored valley, in the Andes Mountains." --nsamples=2 --top_k 40 --temperature .80
+./run_docker.sh "In a shocking finding, scientist discovered a herd of unicorns living in a remote, previously unexplored valley, in the Andes Mountains." --nsamples 2 --top_k 40 --temperature .80
 ```
 
 
